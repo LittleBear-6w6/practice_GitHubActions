@@ -4,13 +4,14 @@
     "main": "index.js",
     "scripts": {
         "lint": "eslint .",
-        "test": "mocha"
+        "test": "nyc --reporter=html --reporter=text mocha"
     },
     "license": "MIT",
     "devDependencies": {
         "@cybozu/eslint-config": "^22.0.1",
         "eslint": "^8.51.0",
         "mocha": "^10.2.0",
+        "nyc": "^15.1.0",
         "pretier": "^0.0.1"
     }
 }
