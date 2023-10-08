@@ -9,7 +9,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node: [16, 18]
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 4
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -28,7 +28,7 @@ jobs:
           path: ${{ steps.npm-cache.outputs.dir}}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json')}}
           restore-keys: |
-            ${{ runner.os}}-node-
+            ${{ runner.os}}-node-${{ matrix.node}}
       - name: Install dependencies
         run: npm ci
       - name: Test
@@ -53,7 +53,8 @@ jobs:
           path: ${{ steps.npm-cache.outputs.dir}}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json')}}
           restore-keys: |
-            ${{ runner.os}}-node-
+            ${{ runner.os}}-node--lint
+            - name: Install dependencies
       - name: Install dependencies
         run: npm ci
       - name: Lint
