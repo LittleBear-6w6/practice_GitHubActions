@@ -1,7 +1,7 @@
 name: Secrutiy Audit
 on:
   schedule:
-    - cron: "35 17 * * *"
+    - cron: "37 8 * * *"
 
 jobs:
   audit:
