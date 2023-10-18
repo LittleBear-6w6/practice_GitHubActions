@@ -23,5 +23,15 @@ jobs:
         continue-on-error: true
 
       - name: Fix
+        id: npm_audit_fix
         run: npm audit fix
         if: steps.npm_audit.outcome == 'failure'
+
+      - name: commit & push
+        run: |
+          git config user.name actions@github.com
+          git config user.email github-actions@github.com
+          git add -A .
+          git commit -m "npm audit fix" || echo "No changes to commit"
+          git push
+        if: steps.npm_audit_fix.outcome == 'success'
