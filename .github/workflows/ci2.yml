@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node: [16, 18]
+        node: [18, 20]
       fail-fast: false
       max-parallel: 4
     runs-on: ${{ matrix.os }}
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
       - name: Get NPM cache directory
@@ -47,10 +47,10 @@ jobs:
     steps:
       - name: Chcekout
         uses: actions/checkout@v4
-      - name: Set Node.js 18
-        uses: actions/setup-node@v3
+      - name: Set Node.js 20
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
       - name: Get NPM cache directory
         id: npm-cache
         run: |
